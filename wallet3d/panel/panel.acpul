@@ -1,0 +1,282 @@
+### 104100 wallet.panel
+
+r0:=k==0;
+
+draw(r0, 108101);
+#draw(r0, 79101);
+
+#w:=p0;
+#h:=p1;
+w:=768;
+#w:=100;
+h:=100;
+
+
+_ @1010;
+_ @1100;
+_ @sys.node;
+#_ @sys.touch;
+#_ @sys.events;
+_ @sys.obj;
+_ @sys.llog;
+_ @ul.ui;
+_ @util.dma.std;
+_ @core.hud;
+
+y:=1024-100;#-100;
+
+#x:=300;y:=500;
+
+_ @sys.llog;
+
+llog.b(A.wallet1.panel);
+llog.erase(r0, 0);
+
+
+_ @core.vg;
+_ @core.vg.curve3d;
+_ @core.vg.curve3d.exp0;
+_ @core.vg.curve3d.exp1;
+
+_ @core.aline;
+
+ln0 r7;
+vg0 r15;
+
+dma0 0;
+dma1 1;
+
+dw0 7.1;
+dw1 1.1;
+
+if (r0) {
+ vg0:=vg.new;
+ r5:=vg.curve3d.new(vg0);
+ ln0:=aline.new;
+
+ aline.move(aline.loc.bl, 0,0,0, 0,0,0, 0);
+ aline.draw(0,w,0, 0,0,0, 0);
+# aline.draw(0,0,0, 0,20,0, 0);
+# aline.draw(0,110,0, 0,110,0, 0);
+ aline.build.curve3d(r5, ln0, w,h, 5, dw0,dw1);
+
+# r5:=vg.curve3d.new(vg0);
+# ln0:=aline.new;
+
+ x0 0;
+ y0 0;
+ e 40;
+
+ br e;
+ tr e;
+ tl e;
+ bl e;
+ tl 0;
+ br 0;
+
+ a {
+  aline.move(aline.loc.b, 0,0,0, 0,y0,0, 0);
+  aline.draw(50,0,br+x0, 0,0,0, 0,);
+  aline.draw(0,br,0, 0,br,0, 0);
+  aline.draw(0,0,0, 100,0,tr+br+y0*2, 0);
+  aline.draw(0,-tr,0, 0,tr,0, 0);
+  aline.draw(-100,0,-tr-tl-x0*2, 0,0,0, 0);
+  aline.draw(0,-tl,0, 0,-tl,0, 0);
+  aline.draw(0,0,0, -100,0,-tl-bl-y0*2, 0);
+  aline.draw(0,bl,0, 0,-bl,0, 0);
+  aline.draw(50,br,br+x0, 0,0,0, 0);
+  aline.build.curve3d(r5, ln0, w,h, 5, dw0,dw1);
+ };
+ a;
+# vg.curve3d.use(r5);
+# vg.curve3d.set.shader(10125072, 10125074);
+# vg.curve3d.uniforms.add.f3(dma0, 0.5,0.1,2.2);
+
+ vg.curve3d.use(r5);
+ vg.curve3d.set.shader(10125072, 10125078);
+ vg.curve3d.uniforms.add.f3(dma0, 0.5,0.1,2.2);
+
+ W {
+  # x0,y0, w,h, dw0,dw1
+  x0 _0; y0 _1; w _2; h _3; dw0 _4; dw1 _5;
+  
+  r5:=vg.curve3d.new(vg0);
+  ln0:=aline.new;
+
+  aline.move(aline.loc.b, 0,x0,0, 0,y0+h,0, 0);
+  aline.draw(0,w/4,0, 0,0-h,0, 0,);
+  aline.draw(0,w/4,0, 0,h/2,0, 0,);
+  aline.draw(0,w/4,0, 0,0-h/2,0, 0,);
+  aline.draw(0,w/4,0, 0,h,0, 0,);
+  aline.build.curve3d(r5, ln0, w,h, 5, dw0,dw1);
+ 
+  vg.curve3d.use(r5);
+  vg.curve3d.set.shader(10125072, 10125076);
+  vg.curve3d.uniforms.add.f3(dma0, 0.5,0.1,2.2);
+ };
+
+ E {
+  # x0,y0, w,h, dw0,dw1
+  x0 _0; y0 _1; w _2; h _3; dw0 _4; dw1 _5;
+  
+  r5:=vg.curve3d.new(vg0);
+  ln0:=aline.new;
+
+  aline.move(aline.loc.b, 0,x0+w,0, 0,y0+h,0, 0);
+#  aline.draw(0,0,0, 0,h,0, 0,);
+  aline.draw(0,0-w,0, 0,0-h/4,0, 0,);
+  aline.draw(0,w/2,0, 0,0-h/4,0, 0,);
+  aline.draw(0,0-w/2,0, 0,0-h/4,0, 0,);
+  aline.draw(0,w,0, 0,0-h/4,0, 0,);
+  aline.build.curve3d(r5, ln0, w,h, 5, dw0,dw1);
+ 
+  vg.curve3d.use(r5);
+  vg.curve3d.set.shader(10125072, 10125076);
+  vg.curve3d.uniforms.add.f3(dma0, 0.5,0.1,2.2);
+ };
+
+
+ Esumm {
+  # x0,y0, w,h, dw0,dw1
+  x0 _0; y0 _1; w _2; h _3; dw0 _4; dw1 _5;
+  
+  r5:=vg.curve3d.new(vg0);
+  ln0:=aline.new;
+
+  aline.move(aline.loc.b, 0,x0+w,0, 0,y0+h,0, 0);
+#  aline.draw(0,0,0, 0,h,0, 0,);
+  aline.draw(0,0-w,0, 0,0,0, 0,);
+  aline.draw(0,w/2,0, 0,0-h/2,0, 0,);
+  aline.draw(0,0-w/2,0, 0,0-h/2,0, 0,);
+  aline.draw(0,w,0, 0,0,0, 0,);
+  aline.build.curve3d(r5, ln0, w,h, 5, dw0,dw1);
+ 
+  vg.curve3d.use(r5);
+  vg.curve3d.set.shader(10125072, 10125076);
+  vg.curve3d.uniforms.add.f3(dma0, 0.5,0.1,2.2);
+ };
+
+ B {
+  # x0,y0, w,h, dw0,dw1
+  x0 _0; y0 _1; w _2; h _3; dw0 _4; dw1 _5;
+  
+  r5:=vg.curve3d.new(vg0);
+  ln0:=aline.new;
+
+  aline.move(aline.loc.b, 0,x0,0, 0,y0,0, 0);
+  aline.draw(0,0,0, 0,h,0, 0,);
+  aline.draw(0,w,0, 0,0-h/4,0, 0,);
+  aline.draw(0,0-w,0, 0,0-h/4,0, 0,);
+  aline.draw(0,w,0, 0,0-h/4,0, 0,);
+  aline.draw(0,0-w,0, 0,0-h/4,0, 0,);
+  aline.build.curve3d(r5, ln0, w,h, 5, dw0,dw1);
+ 
+  vg.curve3d.use(r5);
+  vg.curve3d.set.shader(10125072, 10125076);
+  vg.curve3d.uniforms.add.f3(dma0, 0.5,0.1,2.2);
+ };
+
+ C3 {
+  # x0,y0, w,h, dw0,dw1
+  x0 _0; y0 _1; w _2; h _3; dw0 _4; dw1 _5;
+  
+  r5:=vg.curve3d.new(vg0);
+  ln0:=aline.new;
+
+  aline.move(aline.loc.b, 0,x0,0, 0,y0+h,0, 0);
+  aline.draw(0,w,0, 0,0-h/4,0, 0,);
+  aline.draw(0,0-w,0, 0,0-h/4,0, 0,);
+  aline.draw(0,w,0, 0,0-h/4,0, 0,);
+  aline.draw(0,0-w,0, 0,0-h/4,0, 0,);
+  aline.build.curve3d(r5, ln0, w,h, 5, dw0,dw1);
+ 
+  vg.curve3d.use(r5);
+  vg.curve3d.set.shader(10125072, 10125074);
+  vg.curve3d.uniforms.add.f3(dma0, 0.5,0.5,2.2);
+ };
+
+ C3summ {
+  # x0,y0, w,h, dw0,dw1
+  x0 _0; y0 _1; w _2; h _3; dw0 _4; dw1 _5;
+  
+  r5:=vg.curve3d.new(vg0);
+  ln0:=aline.new;
+
+  aline.move(aline.loc.b, 0,x0,0, 0,y0+h,0, 0);
+  aline.draw(0,w,0, 0,0,0, 0,);
+  aline.draw(0,0-w,0, 0,0-h/2,0, 0,);
+  aline.draw(0,w,0, 0,0-h/2,0, 0,);
+  aline.draw(0,0-w,0, 0,0,0, 0,);
+  aline.build.curve3d(r5, ln0, w,h, 5, dw0,dw1);
+ 
+  vg.curve3d.use(r5);
+  vg.curve3d.set.shader(10125072, 10125074);
+  vg.curve3d.uniforms.add.f3(dma0, 0.5,0.5,2.2);
+ };
+
+
+ x0 10;
+ y0 30;
+ w0 30;
+ h0 50;
+ dx w0+10;
+
+ W(x0,y0,w0,h0, 2,0.3);
+ E(x0+dx,y0,w0,h0, 2,0.3);
+ B(x0+dx*2,y0,w0,h0, 2,0.1);
+ C3(x0+dx*3,y0,w0,h0, 3,0.1);
+
+# llog.po(A.vg0, 0, vg0,-1);
+# llog.po(A.ln0, 0, ln0,-1);
+
+ make.buttons;
+};
+
+bn0 r6;
+
+make.buttons {
+ x0 200;
+ y0 30;
+ w0 85;
+ dw w0+10;
+ new.hud.button0(bn0, x0+0,y0,w0,50, 0, A.Banking);
+ new.hud.button0(bn0, x0+dw,y0,w0,50, 0, A.ICOs);
+ new.hud.button0(bn0, x0+dw*2,y0,w0,50, 0, A.Exchanges);
+ new.hud.button0(bn0, x0+dw*3,y0,w0,50, 0, A.dApps);
+ new.hud.button0(bn0, x0+dw*4,y0,w0,50, 0, A.Smart.IDE);
+ new.hud.button0(bn0, x0+dw*5,y0,w0,50, 0, A.About);
+};
+
+llog.e();
+
+
+k:=1;
+
+### 108101 wallet.panel.draw
+
+#color(u0, 0.5,0.5,0,1.5);
+#rect(u0, 6, 0,0, w,h);
+
+_ @1010;
+_ @sys.node;
+_ @sys.display;
+_ @1100;
+_ @util.gl.std;
+_ @core.hud;
+
+gle.grid1(0,0,w,h, 0.1,0.2,0.3,0.5, w/10,h/10, 0.01,0.01, 20,10);
+
+
+_ @1010;
+_ @1100;
+_ @core.vg;
+_ @core.vg.vec2d.draw;
+_ @core.vg.curve3d;
+_ @core.vg.curve3d.draw;
+
+vg0 r15;
+vg.vec2d.draw(vg0); 
+
+#psize(u0, 1);
+
+

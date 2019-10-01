@@ -1,0 +1,150 @@
+### 108000 ico.view
+
+r0:=k==0;
+
+draw(r0, 108001);
+
+ico.table 108100;
+
+if (r0) {
+ l0:=node.new.this.ex(r0, ico.table, 0); 
+};
+
+k:=1;
+
+### 108001 ico.view.draw
+
+color(u0, 1,1,0,1);
+rect(u0, 6, 0,0,450,450);
+
+
+
+
+
+### 108100 ico.table
+
+r0:=k==0;
+
+draw(r0, 108001);
+
+_ @1010;
+_ @1100;
+_ @sys.node;
+_ @sys.obj;
+_ @ul.ui;
+_ @util.dma.std;
+
+# collection [
+
+_ @ui.collection;
+
+clo0 r5;
+cl0 r2;
+
+line.height 20; # todo!
+
+options ui.collection.default.options.info;
+#options.type 1;
+options { _;
+# grid.width 200/5;
+ grid.height line.height;
+};
+options.draw.cell.fid 0;
+
+ui.collection.options.obj.isavar clo0;
+cl0opts ui.collection.options.obj;
+
+cl0opts.height.s(h);
+cl0opts.width.s(w);
+
+# collection ]
+# collection.cell [
+
+#dbg.operations.view.common 15918;
+#_ @dbg.operations.view.common;
+
+_ @util.dma.std;
+
+cell0 r6;
+
+ui.collection.cell.obj.isavar cell0;
+cell0opts ui.collection.cell.obj.type0;
+
+new.cell.obj {
+ # obj0, obj1
+ obj0 _0;
+ obj1 _1;
+
+ cell0opts.new();
+ cell0opts.init.test0();
+ cell0opts.obj0.s(obj0);
+ cell0opts.obj1.s(obj1);
+
+ cl0opts.add.cell.vec1d(cell0);
+};
+
+ico.cell 108110;
+
+new.cell.ico {
+ # i
+ new.cell.obj(_0,0);
+ cell0opts.fid.s(ico.cell);
+};
+
+# collection.cell ]
+
+if (r0) {
+ cl0opts.new();
+ cl0opts.init(options);
+
+ new.cell.ico(0);
+ new.cell.ico(1);
+
+ ui.collection.new(cl0, 0,0,1, cl0opts.isavar);
+};
+
+k:=1;
+
+### 108101 ico.table.draw
+
+color(u0, 0,0,0.5,0.5);
+rect(u0, 6, 0,0,100,100);
+
+
+
+
+
+### 108110 ico.table.cell
+# w,h, cell0, collection0
+
+r0:=k==0;
+
+draw(r0, 17121);
+
+w:=p0;
+h:=p1;
+
+_ @1010;
+_ @1100;
+_ @sys.node;
+_ @sys.obj;
+_ @sys.llog;
+_ @ul.ui;
+_ @ui.collection;
+_ @util.dma.std;
+_ @core.hud;
+
+blk0 r7;
+
+_ @core.hud;
+
+if (r0) {
+ new.hud.block1(blk0, 0,0, w,h, 1, 1, 10, 2,1);
+};
+
+k:=1;
+
+### 108111 ico.table.cell.draw
+
+color(u0, 0.5,0.0,0.7,0.5);
+rect(u0, 6, 0,0, w,h;

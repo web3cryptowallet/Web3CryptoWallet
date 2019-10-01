@@ -1,0 +1,332 @@
+### 102100 block
+
+r0:=k==0;
+
+draw(r0, 102101);
+
+_ @100001; # wallet.inc
+
+_ @sys.llog;
+
+# for antibugs
+if (r0) {
+ _ @util.i18n;
+ i18n.init();
+};
+
+
+llog.b(A.WEB3.block);
+
+
+# bi block info
+# +bi.0 block height
+# bi.1a amount
+# bi.1b amount reward
+# bi.2 transaction hash
+# bi.3 time
+# bi.5 mined by
+# bi.6 transactions count
+# bi.7 transactions
+# t transactions table
+# tt transaction
+# tt.1 hash
+# tt.2 amount
+# c contracts/projects/ico
+# cc ico table
+# cc.1 icon
+# cc.2 name ico
+# cc.3 amount
+
+
+# +llog.1 dump llog jobj
+
+# gl.1a acpul set depth 
+# gl.1b ios set depth 
+# gl.1c ios draw/dump depth
+
+# p particles
+# p.1 texture particles
+# p.1.point x,y,z vx,vy,vz, tx,ty
+
+# h hud
+# +h.1 block
+# h.2 text
+# h.3 button
+
+setup.orienation;
+
+# object 3d [
+
+mbc0 l15;
+bc0 r7;
+
+slices 2;
+stacks 2;
+#slices 6;
+#stacks 20;
+if (r0) {
+# mbc0:=gl3d.p3d.new.cylinder(slices, stacks);
+ mbc0:=gl3d.p3d.new.plane(slices, stacks);
+ gl3d.p3d.mesh.rotate(mbc0, pi/2, 0,-1,0);
+ #mbc0:=gl3d.p3d.new.cube();
+# gl3d.p3d.mesh.scale(mbc0, 0.2,1,1);
+ gl3d.p3d.mesh.translate(mbc0, 1,-0.2,0);
+};
+
+obj.delete(u0, bc0);
+
+gl3d.p3d.mesh.rotate(mbc0, 0.05/pi, 0,1,0);
+#gl3d.p3d.mesh.translate(mbc0, 0,-0.001,0);
+
+gl3d.p3d.mesh.rotate(mbc0, -0.5/pi, 1,0,0);
+bc0:=gl3d.p3d.mesh.get(mbc0);
+gl3d.p3d.mesh.rotate(mbc0, 0.5/pi, 1,0,0);
+
+# object 3d ]
+# render texture [
+
+_ @1010;
+_ @sys.node;
+_ @1100;
+_ @util.gl.std;
+#_ @util.livenotify;
+
+_ @core.hud;
+
+blk0 r4;
+if (r0) {
+ new.hud.block0(blk0, 0,0, tw,th);
+};
+
+tex0 r1;
+
+#w:=100;
+#h:=100;
+tw 200;
+th 200;
+
+if (r0) {
+ tex0:=node.ex.texture.create.fmt(r0, tw,th, node.ex.texture.fmt.rgb565, 1);
+# livenotify.log(S.clock.skin1.tex0,tex0);
+ node.ex.child.draw.s(r0, 0);
+};
+
+# render texture ]
+# info [
+
+_ @ul.ui;
+
+_ @sys.obj;
+
+tl0 r2;
+
+dma0 0;
+dma1 1;
+
+j0 p0;
+
+if (r0) {
+ if (p0) {
+#  l1:=jobj.buf.dma(j0, A.result.hash, dma0);
+  l1:=jobj.buf.dma(j0, A.result, dma0);
+#  llog.po(A.result, 0, A.result,-1);
+#  llog.po(A.block.p0, 0, p0,-1);
+#  llog.pv(A.block.p0, p0);
+#  llog.po(A.block.p0.result, 0, dma0,-1);
+
+  buffer.from.dma {
+   # buf, dma0, dma1,b0
+   buf _0;
+   dma0 _1;
+   dma1 _2;
+   n _3;
+   n:=dma.size(u0, dma0);
+   buf:=buffer.new(u0, n, n);
+   buffer.dma(u0, dma1, buf,0);
+   dma.copy(u0, dma1,0, dma0,0, n);
+  };
+  buffer.from.dma(l2, dma0, dma1,n);
+
+#  llog.pv(A.block.l2, l2);
+#  llog.po(A.block.l2, 0, l2,-1);
+
+#l2:=S.no.info;
+  new.text.label(tl0, 10,120,1, l2, 20, 0,0,0, 0,10170202, 0); 
+
+ };
+ new.text.label(tl0, 40,0-20,1, A.BLOCK, 20, 0,0,0, 0,10170202, 0); 
+};
+
+# info ]
+
+llog.e();
+
+x:=w/2;
+y:=h/2+r3;
+s-=dt*0.01;
+
+r3-=15*dt;
+
+t+=dt;
+
+# OS/IDE [
+
+_ @sys.os;
+_ @os.basic;
+_ @os.util0;
+_ @os.apps;
+
+#ide.new1(r0);
+
+ _ @os.main;
+
+ if (r0) {
+#  os.main.panel.new(l0, 0,925,1, 768,100);
+ };
+
+# system.monitor.init(0, 940);
+
+ if (r0) {
+#  os.main.ide.new(r0, 0,100,0.25, 600,400);
+ };
+
+# OS/IDE ]
+
+lt:=40;
+
+k:=1;
+
+### 102101 block.draw
+
+_ @100001; # wallet.inc
+
+psize(u0, 5);
+
+draw.form {
+ color(u0, 0.5,0.5,0,0.5);
+ rect(u0, 2, 0,0,500,500);
+ color(u0, 0.5*sin(t)+0.5,0.5,0,0.5);
+ rect(u0, 6, 450,450,50,50);
+};
+#draw.form;
+
+# render texture draw [
+
+tex0 r1;
+
+_ @1010;
+_ @sys.node;
+_ @1100;
+_ @util.gl.std;
+
+to.texture {
+ gl.fbo(tex0);
+#  gl.clear(1,1,0,1);
+
+ fsh 70031;
+ if (r0+1) {
+  gl.shader.use(70014, fsh);
+  node.ex.gl.rect(u0, 0,0, w,h);
+
+  node.ex.gl.child.draw(u0);
+ };
+
+ x0 20;
+ y0 150;
+
+ indicator {
+#  gl.shader.use(70014, fsh);
+#  node.ex.gl.rect(u0, x0,y0, 30,30);
+
+  l5:=if(r0,rnd(u0),l5);
+  l5+=dt;
+
+  psize(u0, 3);
+  c sin(l5+_0*pi)*0.5+0.5;
+
+  color(u0, c(1.5),c(7.9),c(8.1),1);
+  rect(u0, 6, 0+x0,0+y0, 10,10*sin(t*5)+20);
+  color(u0, c(2.5),c(1.9),c(1.1),1);
+  rect(u0, 6, 10+x0,0+y0, 10,10*sin(t*8)+20);
+  color(u0, c(3.5),c(6.9),c(7.1),1);
+  rect(u0, 6, 20+x0,0+y0, 10,10*sin(t*7)+20);
+ };
+ indicator;
+
+# gl.fbo(tex0);
+
+ gl.fbo(-1);
+};
+to.texture;
+
+
+draw.texture.rect {
+ gl.shader.use(70014,70015);
+ gl.shader.uniform.texture(0, tex0, 0);
+ gl.shader.uniform.f1(1, 0.5+0.5*sin(l15*1));
+ node.ex.gl.rect(u0, 0,0, 200,200);
+ #node.ex.gl.rect(u0, 0,0, w,h);
+ # gl.rect0(mode, _1,_2, _3,_4)
+};
+#draw.texture.rect;
+
+# render texture draw ]
+# object 3d draw [
+
+bc0 r7;
+
+#vsh 107200;
+#fsh 107203;
+vsh 107210; # 3d.Va.tex.vsh
+fsh 107211; # 3d.tex.fsh
+#fsh 70016;
+
+
+
+gl.shader.use(vsh, fsh);
+
+attr.position 0;
+attr.color 1;
+attr.normal 2;
+attr.texture 3;
+uniform.texture 0;
+stride 0;
+count dma.size(u0, dma0)/3;
+
+buffer.dma(u0, dma0, bc0,0); # points
+gl.shader.attribute.dma(attr.position, dma0,0, 3,stride,count, 0,0);
+buffer.dma(u0, dma1, bc0,1); # normals
+gl.shader.attribute.dma(attr.normal, dma1,0, 3,stride,count, 0,0);
+buffer.dma(u0, dma2, bc0,2); # tcoords
+gl.shader.attribute.dma(attr.texture, dma2,0, 2,stride,count, 0,0);
+#gl.shader.uniform.texture(uniform.texture, tex0, 0);
+gl.shader.uniform.texture(uniform.texture, tex0, 0);
+
+buffer.dma(u0, dma3, bc0,3); # inidicies
+l0:=node.ex.shader.indices.dma(u0, dma3, dma.size(u0, dma3));
+
+node.ex.gl.draw.elements(u0, 4, l0);
+
+obj.delete(u0, l0);
+
+#vsh 200100;
+#fsh 200101;
+#gl.shader.use(vsh, fsh);
+#gl.shader.attribute.dma(attr.position, dma0,0, 3,stride,count, 0,0);
+#gl.shader.attribute.dma(attr.color, dma0,0, 4,stride,count-10, 0,0);
+#node.ex.gl.draw(u0, 2, count);
+
+#if (r0) {
+# llog.b(S.GL3D.wallet3d);
+# llog.erase(u0, 0);
+# llog.printo(u0, S.block.bc0.draw, 0, bc0,-1);
+# llog.e();
+#}
+
+# object 3d draw ]
+
+
+
+### 102110 block.mini
+
+### 102111 block.mini.draw

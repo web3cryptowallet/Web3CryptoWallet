@@ -1,0 +1,148 @@
+### 102000 blockchain
+
+r0:=k==0;
+
+draw(r0, 102001);
+
+_ @100001; # wallet.inc
+
+mbc0 l15;
+bc0 r7;
+
+slices 6;
+stacks 20;
+if (r0) {
+# mbc0:=gl3d.p3d.new.sphere(slices, stacks);
+# mbc0:=gl3d.p3d.new.klein.bottle(slices, stacks); #!sz
+
+# mbc0:=gl3d.p3d.new.torus(slices, stacks, 0.5);
+# gl3d.p3d.mesh.scale(mbc0, 1,1,5);
+
+# if (p0==1) {
+#  mbc0:=gl3d.p3d.new.cube();
+ # mbc0:=gl3d.p3d.new.sphere(slices, stacks);
+# };
+ if (p0==0) {
+  mbc0:=gl3d.p3d.new.cylinder(slices, stacks);
+#  mbc0:=gl3d.p3d.new.octahedron();
+  gl3d.p3d.mesh.rotate(mbc0, pi/2, 1,0,0);
+#  gl3d.p3d.mesh.scale(mbc0, 0.5,0.5,1);
+  gl3d.p3d.mesh.scale(mbc0, 1.5,8,1.5);
+ };
+
+ bc0:=gl3d.p3d.mesh.get(mbc0);
+
+};
+
+obj.delete(u0, bc0);
+
+gl3d.p3d.mesh.rotate(mbc0, 0.05/pi, 0,1,0);
+
+gl3d.p3d.mesh.rotate(mbc0, -0.5/pi, 1,0,0);
+bc0:=gl3d.p3d.mesh.get(mbc0);
+gl3d.p3d.mesh.rotate(mbc0, 0.5/pi, 1,0,0);
+
+setup.orienation;
+
+x:=w/2;
+y:=h/2+sin(t*0.1)*10-h/25;
+
+s:=0.5;
+#s:=1.6;
+
+t+=dt;
+
+k:=1;
+
+
+### 102001 blockchain.draw
+
+color(u0, 0.5,0.5,0,0.5);
+rect(u0, 400,400, 500,500);
+
+color(u0, 1,0,1,1);
+q 5;
+#triangle(u0, 6, 0,5*q, 10*q,15*q, 20*q,5*q);
+#triangle(u0, 6, 0,0, 10*q,-10*q, 20*q,0*q);
+#rect(u0, 6, 0,0,1000,1000);
+
+# 107200:S 3d.a.vsh
+
+#vsh 10172110;
+#fsh 10172111;
+vsh 107200;
+#fsh 107201;
+
+#fsh 107203;
+#fsh 107205;
+#fsh 107207;
+fsh 107209;
+
+gl.shader.use(vsh, fsh);
+
+_ @100001; # wallet.inc
+
+cylinder0 r7;
+
+attr.position 0;
+attr.color 1;
+attr.normal 2;
+dma0 0;
+dma1 1;
+dma2 2;
+dma3 3;
+stride 0;
+count dma.size(u0, dma0)/3;
+
+buffer.dma(u0, dma0, cylinder0,0); # points
+#buffer.dma(u0, dma0, cylinder0,1); # colors?
+gl.shader.attribute.dma(attr.position, dma0,0, 3,stride,count, 0,0);
+#gl.shader.attribute.dma(attr.color, dma0,4, 4,stride,count, 0,0);
+#node.ex.gl.draw(u0, 0, count);
+#node.ex.gl.draw(u0, 3, count);
+
+buffer.dma(u0, dma3, cylinder0,1); # normals
+gl.shader.attribute.dma(attr.normal, dma3,0, 3,stride,count, 0,0);
+
+buffer.dma(u0, dma2, cylinder0,3);
+# r0, dma, count -> ibuf::object
+l0:=node.ex.shader.indices.dma(u0, dma2, dma.size(u0, dma2));
+# r0, type, ibuf
+node.ex.gl.draw.elements(u0, 5, l0);
+
+vsh 107200;
+fsh 107202;
+
+gl.shader.use(vsh, fsh);
+
+node.ex.gl.draw.elements(u0, 1, l0);
+
+obj.delete(u0, l0);
+
+# stars
+#vsh 200100;
+fsh 200101;
+#vsh 201100;
+#fsh 201101;
+gl.shader.use(vsh, fsh);
+gl.shader.attribute.dma(attr.position, dma0,0, 3,stride,count, 0,0);
+gl.shader.attribute.dma(attr.color, dma0,0, 4,stride,count-10, 0,0);
+node.ex.gl.draw(u0, 0, count);
+
+#buffer.dma(u0, dma0, cylinder0,1);
+#gl.shader.attribute.dma(attr.position, dma0,0, 3,stride,count, 0,0);
+#node.ex.gl.draw(u0, 0, count);
+
+#if (r0) {
+# llog.b(A.GL3D.blockchain.draw);
+# llog.erase(u0, 0);
+# llog.printo(u0, S.cylinder0.draw, 0, cylinder0,-1);
+# llog.e();
+#}
+
+dma.off(u0, 0);
+dma.off(u0, 1);
+
+
+
+

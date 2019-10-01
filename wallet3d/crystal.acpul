@@ -1,0 +1,155 @@
+### 101000 crystal
+
+r0:=k==0;
+
+draw(r0, 101001);
+
+_ @100001; # wallet.inc
+
+mbc0 l15;
+bc0 r7;
+
+slices 6;
+stacks 20;
+if (r0) {
+# mbc0:=gl3d.p3d.new.cylinder(slices, stacks);
+# mbc0:=gl3d.p3d.new.sphere(slices, stacks);
+# mbc0:=gl3d.p3d.new.klein.bottle(slices, stacks); #!sz
+
+# mbc0:=gl3d.p3d.new.torus(slices, stacks, 0.5);
+# gl3d.p3d.mesh.scale(mbc0, 1,1,5);
+
+# if (p0==1) {
+#  mbc0:=gl3d.p3d.new.cube();
+ # mbc0:=gl3d.p3d.new.sphere(slices, stacks);
+# };
+ if (p0==0) {
+  mbc0:=gl3d.p3d.new.octahedron();
+  gl3d.p3d.mesh.rotate(mbc0, pi/2, 1,0,0);
+#  gl3d.p3d.mesh.scale(mbc0, 0.5,0.5,1);
+  gl3d.p3d.mesh.scale(mbc0, 1,2,1);
+ };
+
+ bc0:=gl3d.p3d.mesh.get(mbc0);
+
+};
+
+gl3d.p3d.mesh.rotate(mbc0, 0.05/pi, 0,1,0);
+obj.delete(u0, bc0);
+bc0:=gl3d.p3d.mesh.get(mbc0);
+buffer.get4(u0, bc0,0,0);
+o1:=-1;
+buffer.set4(u0, bc0,0,0, o0,o1,o2,o3);
+
+setup.orienation;
+
+x:=w/2;
+y:=h/2+h/7+sin(t)*50;
+
+s:=0.3;
+#s:=0.2;
+#s:=0.42;
+#s:=1.6;
+
+t+=dt;
+
+k:=1;
+
+### 101001 crystal.draw
+
+_ @100001; # wallet.inc
+
+psize1(u0, 3);
+
+color(u0, 1,0,1,1);
+q 5;
+#triangle(u0, 6, 0,5*q, 10*q,15*q, 20*q,5*q);
+#triangle(u0, 6, 0,0, 10*q,-10*q, 20*q,0*q);
+#rect(u0, 6, 0,0,1000,1000);
+
+# 107200:S 3d.a.vsh
+
+#vsh 10172110;
+#fsh 10172111;
+vsh 107200;
+fsh 107201;
+
+gl.shader.use(vsh, fsh);
+
+
+bc0 r7;
+
+attr.position 0;
+attr.color 1;
+attr.normal 2;
+dma0 0;
+dma1 1;
+dma2 2;
+dma3 3;
+stride 0;
+count dma.size(u0, dma0)/3;
+
+buffer.dma(u0, dma0, bc0,0); # points
+#buffer.dma(u0, dma0, bc0,1); # colors?
+gl.shader.attribute.dma(attr.position, dma0,0, 3,stride,count, 0,0);
+#gl.shader.attribute.dma(attr.color, dma0,4, 4,stride,count, 0,0);
+#node.ex.gl.draw(u0, 0, count);
+#node.ex.gl.draw(u0, 3, count);
+
+buffer.dma(u0, dma3, bc0,1); # normals
+gl.shader.attribute.dma(attr.normal, dma3,0, 3,stride,count, 0,0);
+
+buffer.dma(u0, dma2, bc0,3);
+# r0, dma, count -> ibuf::object
+l0:=node.ex.shader.indices.dma(u0, dma2, dma.size(u0, dma2));
+# r0, type, ibuf
+node.ex.gl.draw.elements(u0, 5, l0);
+
+vsh 107200;
+fsh 107202;
+
+gl.shader.use(vsh, fsh);
+
+node.ex.gl.draw.elements(u0, 2, l0);
+
+obj.delete(u0, l0);
+
+ r 50;
+ dr r*2+2;
+ x0 0-r*2;#r+20;
+ y0 500;
+ color(u0, 0.7,0.7,0.7,0.7);
+ circle(u0, 6, x0+dr*0,y0, r, 0, 20, 0);
+ color(u0, 0,0.7,0,0.7);
+ circle(u0, 6, x0+dr*1,y0, r, 0, 20, 0);
+ color(u0, 0.7,0.7,0,0.7);
+ circle(u0, 6, x0+dr*2,y0, r, 0, 20, 0);
+
+# stars
+#vsh 200100;
+fsh 200101;
+#vsh 201100;
+#fsh 201101;
+gl.shader.use(vsh, fsh);
+gl.shader.attribute.dma(attr.position, dma0,0, 3,stride,count, 0,0);
+gl.shader.attribute.dma(attr.color, dma0,0, 4,stride,count-10, 0,0);
+node.ex.gl.draw(u0, 0, count);
+
+
+#buffer.dma(u0, dma0, bc0,1);
+#gl.shader.attribute.dma(attr.position, dma0,0, 3,stride,count, 0,0);
+#node.ex.gl.draw(u0, 0, count);
+
+if (r0) {
+ llog.b(A.GL3D.crystal.draw);
+ llog.erase(u0, 0);
+ llog.printo(u0, S.bc0.draw, 0, bc0,-1);
+ llog.e();
+}
+
+dma.off(u0, 0);
+dma.off(u0, 1);
+
+
+
+

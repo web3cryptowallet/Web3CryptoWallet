@@ -1,0 +1,110 @@
+### 104200 wallet.about
+# blur.nid
+
+r0:=k==0;
+
+draw(r0, 104201);
+
+dw 100;
+dh 65*2;
+
+w:=768-dw*2;
+h:=1024-100-100*0-dh*2;
+
+x:=dw;
+y:=dh;
+
+_ @1010;
+_ @sys.node;
+_ @sys.display;
+_ @1100;
+_ @util.gl.std;
+_ @core.hud;
+_ @ul.ui;
+
+blk0 r3;
+
+tl0 r4;
+
+if (r0) {
+# new.hud.block1(blk0, 0,0, w,h, 1, 1, 10, 2,1);
+  new.text.label0(tl0, w/2-100,h/2+h/3,1, About, 24, 0,0,0, 0,10170202, 0); 
+  new.text.label(tl0, 0,h/2+h/3-10-35,1, W3C.intro.l0, 24, 0,0,0, 0,10170202, 0); 
+  new.text.label(tl0, 0,h/2+h/3-10-35*2,1, W3C.intro.l1, 24, 0,0,0, 0,10170202, 0); 
+#  new.text.label(tl0, w/2,h-20,1, W3C.intro, 14, 0,0,0, 0,10170202, 0); 
+};
+
+t+=dt;
+
+k:=1;
+
+### 104201 wallet.about.draw
+
+#color(u0, 0.5,0.5,0,0.5);
+#color(u0, 0.5,0.5,0.2,0.5);
+#rect(u0, 6, 0,0,w,h);
+
+
+_ @1010;
+_ @sys.node;
+_ @sys.display;
+_ @1100;
+_ @util.gl.std;
+_ @core.hud;
+
+#nid node.ex.this.id(u0);
+
+tex0 l5;
+
+blur.nid p0;
+
+tex0:=node.value.g(u0, blur.nid, 0);
+
+w0t node.prop.w.g(u0, blur.nid);
+h0t node.prop.h.g(u0, blur.nid);
+
+res.x 1/768;
+res.y 1/1024;
+
+x0 res.x*x;
+y0 res.y*y;
+w0 res.x*w;#*(1+(w/w0t));#(w0t-w);
+h0 res.y*h;#*(1+(h/h0t));#(h0t-h);
+
+
+gle.blur.boxX {
+ # x,y,w,h, tex, res(x,y)
+ fsh 179030;
+ tex0 _4;
+ res.x _5; res.x _6;
+
+ gl.shader.uniform.texture(0, tex0, 0);
+ gl.shader.uniform.f2(1, res.x,res.y);
+ gl.shader.uniform.f2(2, x0,y0);
+ gl.shader.uniform.f2(3, w0,h0);
+ gl.shader.uniform.f4(4, 0.5,0.5,0.5,1); # mul
+ gl.shader.use(70014, fsh);
+ gl.rect0(5, _0,_1, _2,_3);
+};
+
+#gle.backlight1(0,0,w,h, 2+sin(t),2, 0,0.9,0,0, 0.7);
+
+gle.blur.boxX(0,0,w,h, tex0, res.x*2,res.y*2);
+
+
+#gle.blur.boxX(0,0,w,h, tex0, res.x*5,res.y*5);
+#gle.blur.boxX(0,0,w,h, tex0, res.x*15,res.y*15);
+#watch(tex0);
+
+#gle.grid1(0,0,w,h, 0.1,0.1,0.1,0.1, w/10,h/10, 0.01,0.01, 20,10);
+
+#color(u0, 0.5,0.5,0.2,0.5);
+#psize(u0, 3);
+color(u0, 0.5,0.5,0.2,1);
+rect(u0, 2, 0,0,w,h);
+
+psize(u0, 3);
+color(u0, sin(t*2)*0.5+0.5,sin(t*3)*0.5+0.5,0,1);
+y0 h-80;
+line(u0, 2, 100,y0,w-100,y0);
+

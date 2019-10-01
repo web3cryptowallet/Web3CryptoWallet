@@ -1,0 +1,292 @@
+### 100000 wallet
+
+wallet.eth 100010;
+wallet.eth.api 100020;
+wallet.crystal 101000;
+wallet.blockchain 102000;
+wallet.blockchain.block 102100;
+
+wallet.editor 105000;
+wallet.source 105100;
+wallet.abi 105200;
+wallet.bin 105300;
+wallet.asm 105400;
+#wallet.ui 107000;
+#wallet.ui.button 107100;
+#wallet.ui.button 107101;
+
+wallet.menu 104000;
+wallet.panel 104100;
+
+wallet.about 104200;
+
+### 100001 wallet.inc
+
+_ @1010;
+_ @sys.node;
+_ @sys.obj;
+_ @sys.llog;
+_ @sys.display;
+
+_ @1100;
+_ @core.gl3d;
+_ @core.wallet;
+_ @util.gl.std;
+
+#_ @util.i18n;
+#
+#if (r0) {
+# i18n.init();
+#};
+
+
+setup.orienation {
+ vw 768; vh 1024;
+
+ l0:=display.orientation.get() - display.orientation.landscape;         
+ if (l0>0) {
+  w:=vh;
+  h:=vw;
+ # s:=1;
+ };
+ if (l0<=0) {
+  w:=vw;
+  h:=vh;
+ # s:=0.65;
+ };
+};
+
+dma0 0;
+dma1 1;
+dma2 2;
+dma3 3;
+dma4 4;
+dma5 5;
+
+
+
+### 100010 wallet.eth
+
+r0:=k==0;
+
+draw(r0, 100011);
+
+_ @100001; # wallet.inc
+
+#_ @1010;
+#_ @sys.obj;
+#_ @sys.llog;
+#_ @sys.node;
+#
+#_ @1100;
+#_ @core.wallet;
+_ @core.hud;
+
+# for antibugs
+if (r0) {
+ _ @util.i18n;
+ i18n.init();
+};
+
+llog.b(S.WWW.infura);
+llog.erase(r0, 0);
+
+setup.orienation;
+
+rt0 r5;
+cr0 r7;
+bc0 r6;
+
+panel0 r4;
+about0 l14;
+
+if (r0) {
+ wallet.eth.bg 100050;
+# r3:=node.new.this.ex(r0, wallet.eth.bg, 0); 
+
+ cr0:=node.new.this.ex(r0, wallet.crystal, 0); 
+
+ bc0:=node.new.this.ex(r0, wallet.blockchain, 0);
+
+ new.hud.rt0(rt0, 0,0,w,h);
+# node.change.parent(r0, rt0, r3);
+ node.change.parent(r0, rt0, cr0);
+ node.change.parent(r0, rt0, bc0);
+
+ panel0:=node.new.this.ex(r0, wallet.panel, 0);
+
+ about0:=node.new.this.ex(r0, wallet.about, rt0);
+};
+
+#l0:=node.new.this.ex(r0, wallet.blockchain, 1);
+
+#l0:=node.new.this.ex(r0, wallet.blockchain.block, 0);
+
+_ @core.test.common;
+#l0:=node.new.this.ex4(r0, test.jobj.node, 0);
+
+# www [
+
+www.pool 80000;
+
+http.req
+ # jobj
+ #  host '';
+ #  path '';
+ #  method '';
+ #  params [];
+ #  headers [];
+ #  body '';
+ io(u0, 500530, _0, 0, 0,0);
+
+http.req.json
+ # : http.req
+ io(u0, 500530, _0, 1, 0,0);
+
+http.event.res 1;
+
+eth.req.infura {
+ # body ->ev http.event.res
+ req d0;
+ req:=jobj.new;
+ jobj.str.s(req, A.host, S.infura.host);
+ jobj.str.s(req, A.path, S.infura.path);
+ jobj.str.s(req, A.method, A.POST);
+ jobj.o.s(req, A.body, _0);
+ llog.pv(A.eth.req.infura, req);
+ llog.po(A.eth.req.infura, 0, req,-1);
+ http.req.json(req);
+ obj.delete(u0, req);
+};
+
+eth.infura.client.version {
+ # : eth.req.infura
+ #eth.req.infura(S.infura.web3_clientVersion);
+ eth.reqX {
+  req0 d1;
+  
+  req0:=jobj.new;
+  jobj.str.s(req0, A.jsonrpc, S.v2p0);
+  jobj.arr.clear(req0, A.params);
+
+  jobj.v.s(req0, A.id, 67);
+  jobj.str.s(req0, A.method, A.web3_clientVersion);
+
+  eth.req.infura(req0);
+  obj.delete(u0, req0);
+ };
+ eth.reqX;
+};
+
+eth.infura.block.number # last block number
+ # : eth.req.infura
+ eth.req.infura(S.infura.web3_blockNumber);
+
+# alias
+eth.infura.height eth.infura.block.number(__);
+
+eth.infura.block.by.number
+ # : eth.req.infura
+ eth.req.infura(S.infura.eth_getBlockByNumber);
+
+if (if(r0,1,r2>5)) {
+ r2:=0;
+ llog.pv(A.infura.run, 1);
+# eth.infura.client.version;
+ eth.infura.block.number;
+# eth.infura.block.by.number;
+# node.new.this.ex4(u0, wallet.blockchain.block, l0, r3, 0,0);
+ r3-=20;
+};
+
+r2+=dt;
+
+# events [
+
+_ @sys.events;
+
+tb0 l7;
+
+process.events {
+ tb0:=1;
+ while(tb0>0) {
+  tb0:=events.pop(u0, www.pool,0);
+  if (tb0==http.event.res) {
+   l0:=o0;
+   llog.pv(A.http.res, l0);
+   llog.po(A.http.res, 0, l0,-1);
+#   node.new.this.ex4(u0, wallet.blockchain.block, l0, sin(r3/20*pi/4)*100-200, 0,0);
+   l0:=node.new.this.ex4(u0, wallet.blockchain.block, l0, r3, 0,0);
+   node.change.parent(u0, rt0, l0);
+   # pv
+  };
+ };
+};
+process.events;
+
+# events ]
+
+llog.e();
+
+t+=dt;
+
+k:=1;
+
+### 100011 wallet.eth.draw
+
+color(u0, 0.5,0.5,0,0.5);
+rect(u0, 0,0, 500,500);
+
+
+# +b.1 block texture
+# +b.2 block 3d
+# +b.4 block 3d fly
+# +b.5 block 3d texture
+# +b.5a texture vsh/fsh
+# +d.1 draw child element to texture
+# +str.1 string replace PREFIX.A -> A.
+#
+# +net data from net
+# +net.1a ios http req
+# +net.1b acpul http req
+# +net.2a ios http res
+# +net.2b acpul http res
+# +net.3a ios jobj enc json 
+# +net.3b ios json dec jobj
+
+# +h.b.1 backlight
+# +h.b.2 countour
+# +h.b.1 grid
+
+
+
+
+
+### 100050 wallet.eth.bg
+
+r0:=k==0;
+
+draw(r0, 100051);
+
+_ @100001;
+
+setup.orienation;
+
+k:=1;
+
+
+
+### 100051 wallet.eth.bg.draw
+
+#color(u0, 0.5,0.5,0,0.5);
+#color(u0, 0.1,0.3,0.6,0.1);
+#rect(u0, 6, 0,0,w,h);
+
+_ @1010;
+_ @sys.node;
+_ @sys.display;
+_ @1100;
+_ @util.gl.std;
+_ @core.hud;
+
+gle.grid1(0,0,w,h, 0.5,0.5,0.1,0.5, w/10,h/10, 0.01,0.01, 20,20);
