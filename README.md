@@ -10,7 +10,7 @@ See Web3CryptoWallet demo:
 
 # Prerequirements
 
-- Animation CPU Platform for iOS (request us for Animation CPU Beta via TestFligt)
+- Animation CPU Platform for iOS (request us web3future@gmail.com for Animation CPU Beta via TestFligt)
 - node v8.9.1+
 
 # Setup
@@ -53,11 +53,11 @@ node acpu-server.js
 
 ## Donate
 
-Contact us
+Contact us web3future@gmail.com
 
 ## Contribute
 
-Contact us
+Contact us web3future@gmail.com
 
 ## License
 
