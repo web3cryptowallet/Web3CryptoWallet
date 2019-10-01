@@ -2,7 +2,7 @@
 
 Web3CryptoWallet is modern mobile wallet with dApps platform
 
-![Web3 Crypto Wallet screenshot-1](/screenshots/screenshots1.png)
+![Web3 Crypto Wallet screenshot-1](/screenshots/screenshot1.png)
 
 See Web3CryptoWallet demo:
 
