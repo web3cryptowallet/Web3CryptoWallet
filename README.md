@@ -2,6 +2,12 @@
 
 Web3CryptoWallet is modern mobile wallet with dApps platform
 
+![Web3 Crypto Wallet screenshot-1](/screenshots/screenshots1.png)
+
+See Web3CryptoWallet demo:
+
+[https://vimeo.com/363434871](Web3CryptoWallet video @vimeo.com)
+
 # Prerequirements
 
 - Animation CPU Platform for iOS (request us for Animation CPU Beta via TestFligt)
