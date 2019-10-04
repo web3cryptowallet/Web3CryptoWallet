@@ -2,6 +2,13 @@
 
 Web3CryptoWallet is modern mobile wallet with dApps platform
 
+Support Web3 Crypto Wallet
+ETH: 0xC3e387d61fd145be3178cB33c3D65c690d609BBb
+
+
+Follow us on [Twitter](https://twitter.com/Web3Wallet)
+
+
 ![Web3 Crypto Wallet for Tesla](/pictures/sample800x600.jpg)
 
 *PHOTO: Tesla
@@ -59,9 +66,8 @@ node acpu-server.js
 
 ## Donate
 
-Contact us
-web3future@protonmail.com
-web3future@gmail.com
+Support Web3 Crypto Wallet
+ETH: 0xC3e387d61fd145be3178cB33c3D65c690d609BBb
 
 ## Contribute
 
