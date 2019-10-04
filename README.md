@@ -3,6 +3,7 @@
 Web3CryptoWallet is modern mobile wallet with dApps platform
 
 ![Web3 Crypto Wallet for Tesla](/pictures/sample800x600.jpg)
+
 *PHOTO: Tesla
 Photo by Roberto Nickson on Unsplash*
 
